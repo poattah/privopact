@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Privopact – Global Privacy Control",
+  "short_name": "Privopact",
+  "version": "0.1.2",
+  "description": "Automatically send Global Privacy Control (GPC) signals and see how sites respond.",
+  "permissions": ["storage", "declarativeNetRequest"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Privopact – GPC",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main_world.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
